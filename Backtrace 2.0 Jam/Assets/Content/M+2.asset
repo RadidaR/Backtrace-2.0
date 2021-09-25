@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 198dc8a3e6099af4fb4d35ac847616b0, type: 3}
-  m_Name: 3
+  m_Name: M+2
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   negative: 0
-  title: 
-  description: 
-  graphic: {fileID: 21300000, guid: 6ba5f8842061a8b48ab6ee4f8519c32b, type: 3}
-  physical: 0
-  mental: 2
+  title: Mental Positive 1
+  description: ad gfggga
+  graphic: {fileID: 21300000, guid: 36ba3c04ffe3191419d33a9c9f563b73, type: 3}
+  physical: -1
+  mental: 3
   spiritual: -1

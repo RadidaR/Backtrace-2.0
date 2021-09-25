@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using HellTap.PoolKit;
 
 namespace MMC
@@ -12,6 +13,7 @@ namespace MMC
         public ContentObject[] allContent;
         public List<ContentObject> contentList;
         public List<ContentObject> currentContent;
+        public bool currentSetPositive;
         public int contentSetSize;
         //public Spawner mySpawner;
         public GameObject contentPrefab;
@@ -19,14 +21,15 @@ namespace MMC
         public int poolSize;
         public GameObject[] contentPool;
 
+        public RectTransform[] positions;
+
+
+
 
         private void Awake()
         {
             contentPool = new GameObject[poolSize];
-            foreach (ContentObject content in allContent)
-            {
-                contentList.Add(content);
-            }
+            ResetContentList();
 
             for (int i = 0; i < poolSize; i++)
             {
@@ -39,6 +42,30 @@ namespace MMC
             }
 
             FillCurrentContent();
+            SetInitialPositions();
+
+        }
+
+        void SetInitialPositions()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                int random = Random.Range(0, currentContent.Count);
+                ContentScript script = contentPool[i].GetComponent<ContentScript>();
+                script.content = currentContent[random];
+                script.placeInQueue = Mathf.RoundToInt((i + 1.05f) / 2);
+                if (i == 0 || i == 2 || i == 4)
+                {
+                    script.side = Side.L;
+                }
+                else
+                {
+                    script.side = Side.R;
+                }
+                currentContent.Remove(currentContent[random]);
+                contentPool[i].GetComponent<RectTransform>().position = positions[i].position;
+                contentPool[i].SetActive(true);                
+            }
 
         }
 
@@ -65,18 +92,41 @@ namespace MMC
                 }
                 else
                 {
-                    while (contentList[random].type == Type.J)
+                    bool noTypes = true;
+                    foreach (ContentObject content in contentList)
                     {
-                        random = Random.Range(0, contentList.Count);
-                        Debug.Log($"{random}");
-                        if (contentList[random].type != Type.J)
-                            break;
+                        if (content.type != Type.J)
+                            noTypes = false;
                     }
-                    currentContent.Add(contentList[random]);
-                    contentList.RemoveAt(random);
-                    CompleteSet(currentContent[currentContent.Count - 1]);
 
+                    if (!noTypes)
+                    {
+                        while (contentList[random].type == Type.J)
+                        {
+                            random = Random.Range(0, contentList.Count);
+                            Debug.Log($"{random}");
+                            if (contentList[random].type != Type.J)
+                                break;
+                        }
+                        currentContent.Add(contentList[random]);
+                        contentList.RemoveAt(random);
+                        CompleteSet(currentContent[currentContent.Count - 1]);
+                    }
+                    else
+                    {
+                        ResetContentList();
+                        FillCurrentContent();
+                        return;
+                    }
                 }
+            }
+            SetCurrentValue(currentContent[0]);
+
+            while (currentContent.Count < contentSetSize)
+            {
+                ContentObject junk = FindPositiveType(Type.J);
+                currentContent.Add(junk);
+                contentList.Remove(junk);
             }
         }
 
@@ -118,8 +168,8 @@ namespace MMC
                 {
                     if (P != null)
                     {
-                        currentContent.Add(M);
-                        contentList.Remove(M);
+                        currentContent.Add(P);
+                        contentList.Remove(P);
                     }
                     else
                     {
@@ -142,8 +192,8 @@ namespace MMC
                 {
                     if (P != null)
                     {
-                        currentContent.Add(M);
-                        contentList.Remove(M);
+                        currentContent.Add(P);
+                        contentList.Remove(P);
                     }
                     else
                     {
@@ -197,8 +247,8 @@ namespace MMC
                 {
                     if (P != null)
                     {
-                        currentContent.Add(M);
-                        contentList.Remove(M);
+                        currentContent.Add(P);
+                        contentList.Remove(P);
                     }
                     else
                     {
@@ -221,8 +271,8 @@ namespace MMC
                 {
                     if (P != null)
                     {
-                        currentContent.Add(M);
-                        contentList.Remove(M);
+                        currentContent.Add(P);
+                        contentList.Remove(P);
                     }
                     else
                     {
@@ -242,6 +292,28 @@ namespace MMC
                     }
                 }
             }
+        }
+
+        void SetCurrentValue (ContentObject content)
+        {
+            if (content.negative)
+            {
+                currentSetPositive = false;
+            }
+            else
+            {
+                currentSetPositive = true;
+            }
+        }
+
+        void ResetContentList()
+        {
+            contentList.Clear();
+            foreach (ContentObject content in allContent)
+            {
+                contentList.Add(content);
+            }
+
         }
 
         public ContentObject FindPositiveType (Type type)
