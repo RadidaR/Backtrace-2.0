@@ -825,6 +825,10 @@ MonoBehaviour:
   spiritual: 0
   eLeftPressed: {fileID: 11400000, guid: 457da480e231deb4e84ca956eaaa82f4, type: 2}
   eRightPressed: {fileID: 11400000, guid: 46b2f29aae33f21428751b5debf6bd0a, type: 2}
+  buildUp: 3
+  buildTimer: 0
+  inputWindow: 0
+  inputTimer: 0
 --- !u!114 &786270579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +870,7 @@ MonoBehaviour:
   contentList: []
   currentContent: []
   currentSetPositive: 0
-  contentSetSize: 6
+  contentSetSize: 10
   contentPrefab: {fileID: 4814184638389676539, guid: 9ecea780d93dd0a47806d56c05768160, type: 3}
   canvas: {fileID: 1264594097}
   poolSize: 20

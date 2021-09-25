@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MEC;
 
 //public enum contentType
 
@@ -18,6 +19,10 @@ namespace MMC
 
         Input input;
 
+        public float buildUp;
+        public float buildTimer;
+        public float inputWindow;
+        public float inputTimer;
 
         public void AddPhysical(int add) => physical += add;
         public void AddMental(int add) => mental += add;
@@ -32,6 +37,8 @@ namespace MMC
 
             input.Play.Left.performed += ctx => eLeftPressed.Raise();
             input.Play.Right.performed += ctx => eRightPressed.Raise();
+
+            Timing.RunCoroutine(_BuildUp(), Segment.Update);
         }
 
         private void OnEnable()
@@ -42,6 +49,13 @@ namespace MMC
         private void OnDisable()
         {
             input.Disable();
+        }
+
+        IEnumerator<float> _BuildUp()
+        {
+            Debug.Log("Start");
+            yield return Timing.WaitForSeconds(buildUp);
+            Debug.Log("End");
         }
 
     }
