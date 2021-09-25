@@ -1,0 +1,52 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Play",
+            "id": "a2feca35-2238-4f4d-aeb3-bb4bcb2ae36f",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "b6c0988b-89de-410a-bf17-93b087c582fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "3f28bff3-d176-41f2-b429-6345f5a1924c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "efbdec2a-40f8-49c5-b4c7-96e42d423c76",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "428888e9-d0bf-4ed2-bb5e-5a2e2b1b4244",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
