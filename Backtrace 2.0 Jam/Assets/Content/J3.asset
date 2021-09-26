@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   negative: 0
-  title: Junk3
-  description: kjkj fdfd
-  graphic: {fileID: 21300000, guid: 6ba5f8842061a8b48ab6ee4f8519c32b, type: 3}
+  title: Hot Singles In Your Area
+  description: 'Want to meet Hot singles in your area? Use this link:'
+  graphic: {fileID: 21300000, guid: 3c985bc49f0718d40a1b921376926e64, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   physical: -1
