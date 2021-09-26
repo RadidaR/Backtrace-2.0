@@ -23,12 +23,17 @@ namespace MMC
         public TextMeshProUGUI mentalText;
         public TextMeshProUGUI spiritualText;
 
+        Vector3 pStat;
+        Vector3 mStat;
+        Vector3 sStat;
+
         GameManager manager;
         public float dropDistance;
 
         private void Awake()
         {
             manager = FindObjectOfType<GameManager>();
+            GetStatSpots();
         }
         public bool activeContent()
         {
@@ -78,8 +83,7 @@ namespace MMC
 
         void Picked()
         {
-            //GameManager manager = FindObjectOfType<GameManager>();
-            manager.UpdateStats(content.physical, content.mental, content.spiritual);
+            //GameManager manager = FindObjectOfType<GameManager>();            
             Timing.RunCoroutine(_Shared(manager.GetComponentInChildren<SharedFeed>().gameObject.GetComponent<RectTransform>(), manager.buildUp), Segment.Update);
             //Despawn();
         }
@@ -94,6 +98,9 @@ namespace MMC
                 timer += Time.deltaTime;
                 gameObject.transform.localPosition = Vector3.Lerp(pos, new Vector3(pos.x, pos.y - distance, pos.z), timer * 2);
             }
+
+            pos.y -= distance;
+            gameObject.transform.localPosition = pos;
 
             if (placeInQueue == 0)
                 Despawn();
@@ -114,6 +121,27 @@ namespace MMC
         //    Getc
         //}
 
+        void GetStatSpots()
+        {
+            StatSpot[] spots = FindObjectsOfType<StatSpot>();
+
+            foreach (StatSpot spot in spots)
+            {
+                if (spot.gameObject.name == "P")
+                {
+                    pStat = spot.gameObject.transform.position;
+                }
+                else if (spot.gameObject.name == "M")
+                {
+                    mStat = spot.gameObject.transform.position;
+                }
+                else if (spot.gameObject.name == "S")
+                {
+                    sStat = spot.gameObject.transform.position;
+                }
+            }
+        }
+
         IEnumerator<float> _Shared(RectTransform position, float time)
         {
             float timer = 0;
@@ -133,11 +161,48 @@ namespace MMC
             timer = 0;
             Vector3 pos = GetComponent<RectTransform>().localPosition;
             pos.y += 3 * dropDistance;
+
+            Vector3 ppos = physicalText.gameObject.transform.position;
+            Vector3 mpos = mentalText.gameObject.transform.position;
+            Vector3 spos = spiritualText.gameObject.transform.position;
+
+            Vector3 ppos2 = physicalText.gameObject.transform.localPosition;
+            Vector3 mpos2 = mentalText.gameObject.transform.localPosition;
+            Vector3 spos2 = spiritualText.gameObject.transform.localPosition;
+
+            //Vector3 ppos2;
+            //Vector3 mpos2;
+            //Vector3 spos2;
+
+            //StatSpot[] spots = FindObjectsOfType<StatSpot>();
+
+            //foreach (StatSpot spot in spots)
+            //{
+            //    if (spot.gameObject.name == "P")
+            //    {
+            //        ppos2 = spot.gameObject.transform.position;
+            //    }
+            //    else if (spot.gameObject.name == "M")
+            //    {
+            //        mpos2 = spot.gameObject.transform.position;
+            //    }
+            //    else if (spot.gameObject.name == "S")
+            //    {
+            //        spos2 = spot.gameObject.transform.position;
+            //    }
+            //}
+            //Vector3 ppos2 = FindObjectOfType
+
             while (timer < time / 2)
             {
                 yield return Timing.WaitForSeconds(Time.deltaTime);
                 timer += Time.deltaTime;
                 gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, pos, timer);
+
+                physicalText.gameObject.transform.position = Vector3.Lerp(ppos, pStat, timer * 2);
+                mentalText.gameObject.transform.position = Vector3.Lerp(mpos, mStat, timer * 2);
+                spiritualText.gameObject.transform.position = Vector3.Lerp(spos, sStat, timer * 2);
+
 
                 float newA = Mathf.Lerp(1, 0, timer * 2);
 
@@ -160,9 +225,12 @@ namespace MMC
                 //descriptionText.color.SetAlpha(newA);
                 //graphic.color.SetAlpha(newA);
             }
-
+            manager.UpdateStats(content.physical, content.mental, content.spiritual);
 
             Despawn();
+            physicalText.gameObject.transform.localPosition = ppos2;
+            mentalText.gameObject.transform.localPosition = mpos2;
+            spiritualText.gameObject.transform.localPosition = spos2;
             //yield return Timing.WaitForSeconds(1);
         }
 
