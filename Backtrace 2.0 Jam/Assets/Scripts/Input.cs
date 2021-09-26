@@ -21,17 +21,9 @@ namespace MMC
             ""id"": ""a2feca35-2238-4f4d-aeb3-bb4bcb2ae36f"",
             ""actions"": [
                 {
-                    ""name"": ""Left"",
+                    ""name"": ""Choice"",
                     ""type"": ""Button"",
                     ""id"": ""b6c0988b-89de-410a-bf17-93b087c582fd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Right"",
-                    ""type"": ""Button"",
-                    ""id"": ""3f28bff3-d176-41f2-b429-6345f5a1924c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -39,26 +31,70 @@ namespace MMC
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""efbdec2a-40f8-49c5-b4c7-96e42d423c76"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""24717970-5ba7-4640-9a23-7d4ad2169ed7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choice"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0ce7efb4-00af-4668-8570-385991d27a8b"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Left"",
+                    ""action"": ""Choice"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""428888e9-d0bf-4ed2-bb5e-5a2e2b1b4244"",
+                    ""name"": ""positive"",
+                    ""id"": ""f3d0283b-1658-4e45-ba8e-13d45c79a027"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Right"",
+                    ""action"": ""Choice"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f7e5e412-ddac-4bcd-a340-4dc12b2f61a4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choice"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8985bf55-498f-4b64-be9b-a3f6882973dc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ac12ebf6-883d-4290-919c-352c616487a6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Choice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -67,8 +103,7 @@ namespace MMC
 }");
             // Play
             m_Play = asset.FindActionMap("Play", throwIfNotFound: true);
-            m_Play_Left = m_Play.FindAction("Left", throwIfNotFound: true);
-            m_Play_Right = m_Play.FindAction("Right", throwIfNotFound: true);
+            m_Play_Choice = m_Play.FindAction("Choice", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -118,14 +153,12 @@ namespace MMC
         // Play
         private readonly InputActionMap m_Play;
         private IPlayActions m_PlayActionsCallbackInterface;
-        private readonly InputAction m_Play_Left;
-        private readonly InputAction m_Play_Right;
+        private readonly InputAction m_Play_Choice;
         public struct PlayActions
         {
             private @Input m_Wrapper;
             public PlayActions(@Input wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Left => m_Wrapper.m_Play_Left;
-            public InputAction @Right => m_Wrapper.m_Play_Right;
+            public InputAction @Choice => m_Wrapper.m_Play_Choice;
             public InputActionMap Get() { return m_Wrapper.m_Play; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -135,30 +168,23 @@ namespace MMC
             {
                 if (m_Wrapper.m_PlayActionsCallbackInterface != null)
                 {
-                    @Left.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnLeft;
-                    @Left.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnLeft;
-                    @Left.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnLeft;
-                    @Right.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnRight;
-                    @Right.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnRight;
-                    @Right.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnRight;
+                    @Choice.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
+                    @Choice.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
+                    @Choice.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
                 }
                 m_Wrapper.m_PlayActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Left.started += instance.OnLeft;
-                    @Left.performed += instance.OnLeft;
-                    @Left.canceled += instance.OnLeft;
-                    @Right.started += instance.OnRight;
-                    @Right.performed += instance.OnRight;
-                    @Right.canceled += instance.OnRight;
+                    @Choice.started += instance.OnChoice;
+                    @Choice.performed += instance.OnChoice;
+                    @Choice.canceled += instance.OnChoice;
                 }
             }
         }
         public PlayActions @Play => new PlayActions(this);
         public interface IPlayActions
         {
-            void OnLeft(InputAction.CallbackContext context);
-            void OnRight(InputAction.CallbackContext context);
+            void OnChoice(InputAction.CallbackContext context);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace MMC
 
         public RectTransform[] positions;
 
+        public int poolCounter = 0;
+
 
 
 
@@ -43,18 +45,17 @@ namespace MMC
 
             FillCurrentContent();
             SetInitialPositions();
-
         }
 
         void SetInitialPositions()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 8; i++)
             {
                 int random = Random.Range(0, currentContent.Count);
                 ContentScript script = contentPool[i].GetComponent<ContentScript>();
                 script.content = currentContent[random];
                 script.placeInQueue = Mathf.RoundToInt((i + 1.05f) / 2);
-                if (i == 0 || i == 2 || i == 4)
+                if (i == 0 || i == 2 || i == 4 || i == 6)
                 {
                     script.side = Side.L;
                 }
@@ -64,26 +65,78 @@ namespace MMC
                 }
                 currentContent.Remove(currentContent[random]);
                 contentPool[i].GetComponent<RectTransform>().position = positions[i].position;
-                contentPool[i].SetActive(true);                
+                contentPool[i].SetActive(true);
+                poolCounter++;
             }
 
         }
 
+        public void SpawnNewContent()
+        {
+            if (currentContent.Count < 4)
+            {
+                Debug.Log("Refilling");
+                FillCurrentContent();
+            }                  
+
+            Spawn(Side.L);
+            Spawn(Side.R);
+
+
+            //script.placeInQueue = 
+
+        }
+
+        void Spawn(Side side)
+        {
+            if (poolCounter == contentPool.Length - 1)
+            {
+                Debug.Log("Reset Pool");
+                poolCounter = 0;
+            }
+
+            ContentScript script = contentPool[poolCounter].GetComponent<ContentScript>();
+            int random = Random.Range(0, currentContent.Count);
+
+            if (side == Side.L)
+            {
+                Debug.Log($"LEFT number: {random} ; size: {currentContent.Count}");
+                script.content = currentContent[random];
+                script.placeInQueue = 4;
+                script.side = Side.L;
+                currentContent.Remove(currentContent[random]);
+                contentPool[poolCounter].GetComponent<RectTransform>().position = positions[6].position;
+                contentPool[poolCounter].SetActive(true);
+            }
+            else if (side == Side.R)
+            {
+                Debug.Log($"RIGHT number: {random} ; size: {currentContent.Count}");
+                script.content = currentContent[random];
+                script.placeInQueue = 4;
+                script.side = Side.R;
+                currentContent.Remove(currentContent[random]);
+                contentPool[poolCounter].GetComponent<RectTransform>().position = positions[7].position;
+                contentPool[poolCounter].SetActive(true);
+
+            }
+            poolCounter++;
+        }
+
         void FillCurrentContent()
         {
-            currentContent.Clear();
+            //currentContent.Clear();
             if (contentList.Count <= contentSetSize)
             {
                 foreach (ContentObject content in contentList)
                 {
                     currentContent.Add(content);
                 }
-                contentList.Clear();
+                ResetContentList();
             }
             else
             {
                 int random = Random.Range(0, contentList.Count);
-                Debug.Log($"{random}");
+                //Debug.Log($"{random}");
                 if (contentList[random].type != Type.J)
                 {
                     currentContent.Add(contentList[random]);
@@ -104,7 +157,7 @@ namespace MMC
                         while (contentList[random].type == Type.J)
                         {
                             random = Random.Range(0, contentList.Count);
-                            Debug.Log($"{random}");
+                            //Debug.Log($"{random}");
                             if (contentList[random].type != Type.J)
                                 break;
                         }

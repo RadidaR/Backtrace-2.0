@@ -6,17 +6,9 @@
             "id": "a2feca35-2238-4f4d-aeb3-bb4bcb2ae36f",
             "actions": [
                 {
-                    "name": "Left",
+                    "name": "Choice",
                     "type": "Button",
                     "id": "b6c0988b-89de-410a-bf17-93b087c582fd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Right",
-                    "type": "Button",
-                    "id": "3f28bff3-d176-41f2-b429-6345f5a1924c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -24,26 +16,70 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "efbdec2a-40f8-49c5-b4c7-96e42d423c76",
+                    "name": "1D Axis",
+                    "id": "24717970-5ba7-4640-9a23-7d4ad2169ed7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choice",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "0ce7efb4-00af-4668-8570-385991d27a8b",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left",
+                    "action": "Choice",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "428888e9-d0bf-4ed2-bb5e-5a2e2b1b4244",
+                    "name": "positive",
+                    "id": "f3d0283b-1658-4e45-ba8e-13d45c79a027",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Right",
+                    "action": "Choice",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "f7e5e412-ddac-4bcd-a340-4dc12b2f61a4",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choice",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8985bf55-498f-4b64-be9b-a3f6882973dc",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choice",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ac12ebf6-883d-4290-919c-352c616487a6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choice",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
