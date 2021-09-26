@@ -16,7 +16,9 @@ MonoBehaviour:
   negative: 1
   title: Physical Negative 1
   description: description 1
-  graphic: {fileID: 21300000, guid: 36ba3c04ffe3191419d33a9c9f563b73, type: 3}
+  graphic: {fileID: 21300000, guid: f9ca0507820219f4eba03706090611a4, type: 3}
+  background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
+  tint: {r: 0.69803923, g: 0.26666668, b: 0.23137257, a: 1}
   physical: -3
   mental: 1
   spiritual: 1

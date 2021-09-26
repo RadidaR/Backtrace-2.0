@@ -8,6 +8,8 @@ public class ContentObject : ScriptableObject
     public string title;
     public string description;
     public Sprite graphic;
+    public Sprite background;
+    public Color tint;
     public int physical;
     public int mental;
     public int spiritual;

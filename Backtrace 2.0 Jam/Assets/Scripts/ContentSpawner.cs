@@ -100,7 +100,6 @@ namespace MMC
 
             if (side == Side.L)
             {
-                Debug.Log($"LEFT number: {random} ; size: {currentContent.Count}");
                 script.content = currentContent[random];
                 script.placeInQueue = 4;
                 script.side = Side.L;
@@ -110,7 +109,6 @@ namespace MMC
             }
             else if (side == Side.R)
             {
-                Debug.Log($"RIGHT number: {random} ; size: {currentContent.Count}");
                 script.content = currentContent[random];
                 script.placeInQueue = 4;
                 script.side = Side.R;

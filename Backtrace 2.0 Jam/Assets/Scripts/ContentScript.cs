@@ -18,6 +18,7 @@ namespace MMC
         public TextMeshProUGUI titleText;
         public TextMeshProUGUI descriptionText;
         public MPImage graphic;
+        public MPImage background;
         public TextMeshProUGUI physicalText;
         public TextMeshProUGUI mentalText;
         public TextMeshProUGUI spiritualText;
@@ -43,6 +44,8 @@ namespace MMC
             titleText.text = content.title;
             descriptionText.text = content.description;
             graphic.sprite = content.graphic;
+            background.sprite = content.background;
+            background.color = content.tint;
             physicalText.text = $"{content.physical}";
             mentalText.text = $"{content.mental}";
             spiritualText.text = $"{content.spiritual}";
@@ -63,12 +66,12 @@ namespace MMC
         {
             if (placeInQueue != 0)
             {
-                Timing.RunCoroutine(_Drop(dropDistance, manager.buildUp), Segment.Update);
+                Timing.RunCoroutine(_Drop(dropDistance, manager.buildUp / 2), Segment.Update);
                 return;
             }
 
 
-            Timing.RunCoroutine(_Drop(dropDistance + 100, manager.buildUp), Segment.Update);
+            Timing.RunCoroutine(_Drop(dropDistance + 100, manager.buildUp / 2), Segment.Update);
 
             //Despawn();
         }
@@ -89,7 +92,7 @@ namespace MMC
             {
                 yield return Timing.WaitForSeconds(Time.deltaTime);
                 timer += Time.deltaTime;
-                gameObject.transform.localPosition = Vector3.Lerp(pos, new Vector3(pos.x, pos.y - distance, pos.z), timer);
+                gameObject.transform.localPosition = Vector3.Lerp(pos, new Vector3(pos.x, pos.y - distance, pos.z), timer * 2);
             }
 
             if (placeInQueue == 0)
@@ -113,20 +116,52 @@ namespace MMC
 
         IEnumerator<float> _Shared(RectTransform position, float time)
         {
-            Vector3 pos = GetComponent<RectTransform>().position;
             float timer = 0;
             Vector3 newScale = gameObject.transform.localScale;
-            while (timer < time)
+            while (timer < time / 2)
             {
                 yield return Timing.WaitForSeconds(Time.deltaTime);
                 timer += Time.deltaTime;
-                gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, position.position, timer);
-                newScale.x = Mathf.Lerp(1, -1, timer * 5);
+                gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, position.position, timer * 2);
+                newScale.x = Mathf.Lerp(1, -1, timer * 3.5f);
                 gameObject.transform.localScale = newScale;
                 physicalText.gameObject.transform.localScale = newScale;
                 mentalText.gameObject.transform.localScale = newScale;
                 spiritualText.gameObject.transform.localScale = newScale;
             }
+
+            timer = 0;
+            Vector3 pos = GetComponent<RectTransform>().localPosition;
+            pos.y += 3 * dropDistance;
+            while (timer < time / 2)
+            {
+                yield return Timing.WaitForSeconds(Time.deltaTime);
+                timer += Time.deltaTime;
+                gameObject.transform.localPosition = Vector3.Lerp(gameObject.transform.localPosition, pos, timer);
+
+                float newA = Mathf.Lerp(1, 0, timer * 2);
+
+                
+
+                Color textColor = titleText.color;
+                textColor.a = newA;
+                titleText.color = textColor;
+                descriptionText.color = textColor;
+
+                Color graphicColor = graphic.color;
+                graphicColor.a = newA;
+                graphic.color = graphicColor;
+
+                Color backgroundColor = background.color;
+                backgroundColor.a = newA;
+                background.color = backgroundColor;
+
+                //titleText.color.SetAlpha(newA);
+                //descriptionText.color.SetAlpha(newA);
+                //graphic.color.SetAlpha(newA);
+            }
+
+
             Despawn();
             //yield return Timing.WaitForSeconds(1);
         }
@@ -140,7 +175,25 @@ namespace MMC
             physicalText.text = null;
             mentalText.text = null;
             spiritualText.text = null;
+            //titleText.color.SetAlpha(1);
+            //descriptionText.color.SetAlpha(1);
+            //graphic.color.SetAlpha(1);
             //content = null;
+
+
+            Color textColor = titleText.color;
+            textColor.a = 1;
+            titleText.color = textColor;
+            descriptionText.color = textColor;
+
+            Color graphicColor = graphic.color;
+            graphicColor.a = 1;
+            graphic.color = graphicColor;
+
+            Color backgroundColor = background.color;
+            backgroundColor.a = 1;
+            background.color = backgroundColor;
+
             placeInQueue = 0;
 
             gameObject.transform.localScale = Vector3.one;

@@ -17,6 +17,8 @@ MonoBehaviour:
   title: Junk5
   description: xcvased
   graphic: {fileID: 21300000, guid: 6ba5f8842061a8b48ab6ee4f8519c32b, type: 3}
+  background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
+  tint: {r: 1, g: 1, b: 1, a: 1}
   physical: 1
   mental: 0
   spiritual: 1

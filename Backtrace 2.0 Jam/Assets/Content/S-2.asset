@@ -16,7 +16,9 @@ MonoBehaviour:
   negative: 1
   title: Spiritual Negative 2
   description: fdsfdsfff
-  graphic: {fileID: 21300000, guid: 6ba5f8842061a8b48ab6ee4f8519c32b, type: 3}
+  graphic: {fileID: 21300000, guid: 33bf91ffe01b30b44a1e67931ccf5fdd, type: 3}
+  background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
+  tint: {r: 0.015686275, g: 0.8000001, b: 0.45098042, a: 1}
   physical: 1
   mental: 1
   spiritual: -3

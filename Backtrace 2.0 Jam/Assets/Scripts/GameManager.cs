@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using MEC;
 
@@ -10,9 +11,10 @@ namespace MMC
 {
     public class GameManager : MonoBehaviour
     {
-        [Range(0, 20)] public int physical;
-        [Range(0, 20)] public int mental;
-        [Range(0, 20)] public int spiritual;
+        public int statMax;
+        public int physical;
+        public int mental;
+        public int spiritual;
 
 
         public GameEvent eLeftPressed;
@@ -27,6 +29,10 @@ namespace MMC
         public bool openWindow;
         public bool swiping;
 
+        public Slider physicalSlider;
+        public Slider mentalSlider;
+        public Slider spiritualSlider;
+
 
         public void AddPhysical(int add) => physical += add;
         public void AddMental(int add) => mental += add;
@@ -37,18 +43,28 @@ namespace MMC
             physical += addP;
             mental += addM;
             spiritual += addS;
+            physicalSlider.value = physical;
+            mentalSlider.value = mental;
+            spiritualSlider.value = spiritual;
         }
 
         private void Awake()
         {
             input = new Input();
-            physical = 9;
-            mental = 9;
-            spiritual = 9;
+            physical = Mathf.RoundToInt(statMax / 2);
+            mental = Mathf.RoundToInt(statMax / 2);
+            spiritual = Mathf.RoundToInt(statMax / 2);
 
             input.Play.Choice.performed += ctx => PlayerInput();
             //input.Play.Right.performed += ctx => eRightPressed.Raise();
 
+            physicalSlider.maxValue = statMax;
+            mentalSlider.maxValue = statMax;
+            spiritualSlider.maxValue = statMax;
+
+            physicalSlider.value = physical;
+            mentalSlider.value = mental;
+            spiritualSlider.value = spiritual;
             Timing.RunCoroutine(_BuildUp(), Segment.Update);
         }
 
@@ -61,6 +77,7 @@ namespace MMC
         {
             input.Disable();
         }
+
 
         void PlayerInput()
         {
@@ -85,7 +102,7 @@ namespace MMC
         {
             openWindow = false;
             swiping = true;
-            yield return Timing.WaitForSeconds(buildUp);
+            yield return Timing.WaitForSeconds(buildUp + 0.25f);
             Timing.RunCoroutine(_InputWindow(), Segment.Update);
         }
 
@@ -117,22 +134,26 @@ namespace MMC
 
         void Punish()
         {
-            if (physical <= 11)
-                AddPhysical(-1);
+            int p;
+            int m;
+            int s;
+            if (physical <= statMax / 2)
+                p = -1;
             else
-                AddPhysical(1);
+                p = 1;
 
-            if (mental <= 7)
-                AddMental(-1);
+            if (mental <= statMax / 2)
+                m = -1;
             else
-                AddMental(1);
+                m = 1;
 
-            if (spiritual <= 8)
-                AddSpiritual(-1);
+            if (spiritual <= statMax / 2)
+                s = -1;
             else
-                AddSpiritual(1);
+                s = 1;
 
             eWindowMissed.Raise();
+            UpdateStats(p, m, s);
         }
 
     }
