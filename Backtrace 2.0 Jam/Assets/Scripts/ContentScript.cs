@@ -194,6 +194,8 @@ namespace MMC
             //}
             //Vector3 ppos2 = FindObjectOfType
 
+            manager.PlaySound("Shared");
+
             while (timer < time / 2)
             {
                 yield return Timing.WaitForSeconds(Time.deltaTime);

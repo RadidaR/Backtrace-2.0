@@ -123,63 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &3203396596242506757
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3203396595020946049, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_Name
-      value: Backtrace
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.738878
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.760155
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203396595020946051, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5caad6fae6d3ec34c874ddfffb2d2939, type: 3}
 --- !u!1001 &8966139176376446237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8966139176463204012, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8966139176463204012, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -243,9 +186,113 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8966139176944411759, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
+      propertyPath: ePunished
+      value: 
+      objectReference: {fileID: 11400000, guid: a089aed91c219f04897bbb0e907fb78f, type: 2}
     - target: {fileID: 8966139178145589427, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
+--- !u!114 &8966139176376446238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8966139176944411759, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
+  m_PrefabInstance: {fileID: 8966139176376446237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d009fe198026f8f4282229ad84283643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8966139176376446239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8966139177751684839, guid: 6973d15834be89243a8d757ca1785d09, type: 3}
+  m_PrefabInstance: {fileID: 8966139176376446237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8966139176376446240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966139176376446239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275529bbaf2a5484d874eea7a7d8a8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a089aed91c219f04897bbb0e907fb78f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8966139176376446238}
+        m_TargetAssemblyTypeName: MMC.GameManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Fail
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8966139176376446241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966139176376446239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275529bbaf2a5484d874eea7a7d8a8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 457da480e231deb4e84ca956eaaa82f4, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8966139176376446238}
+        m_TargetAssemblyTypeName: MMC.GameManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Selected
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8966139176376446242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966139176376446239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275529bbaf2a5484d874eea7a7d8a8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 46b2f29aae33f21428751b5debf6bd0a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8966139176376446238}
+        m_TargetAssemblyTypeName: MMC.GameManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Selected
+          m_BoolArgument: 0
+        m_CallState: 2

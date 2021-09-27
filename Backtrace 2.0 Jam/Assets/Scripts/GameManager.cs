@@ -35,6 +35,7 @@ namespace MMC
         public GameEvent eGameOver;
         public GameEvent ePause;
         public GameEvent eUnpause;
+        public GameEvent ePunished;
 
         Input input;
 
@@ -70,10 +71,16 @@ namespace MMC
         public Color start;
         public Color end;
 
+        AudioManager audio;
+
 
         public void AddPhysical(int add) => physical += add;
         public void AddMental(int add) => mental += add;
         public void AddSpiritual(int add) => spiritual += add;
+
+
+        public void PlaySound(string name) => audio.PlaySound(name);
+        public void StopSound(string name) => audio.StopSound(name);
 
         public void UpdateStats(int addP, int addM, int addS)
         {
@@ -120,7 +127,16 @@ namespace MMC
             }
 
             if (!multiplierGoing)
+            {
+                if (comboMultiplier >= 3)
+                    PlaySound("ComboLost");
+
                 comboMultiplier = 1;
+            }
+            else
+            {
+                PlaySound("ComboUp");
+            }
 
             scoreText.text = $"Score: {score}";
             multiplierText.text = $"x{comboMultiplier}";
@@ -178,6 +194,7 @@ namespace MMC
 
         private void Awake()
         {
+            audio = FindObjectOfType<AudioManager>();
             gameOver = false;
             paused = false;
             Time.timeScale = 1;
@@ -273,6 +290,7 @@ namespace MMC
         {
             openWindow = false;
             swiping = true;
+            StopSound("Ticking");
             shareToFeed.color = Color.yellow;
             Color a = stateTimer.color;
             a.a = 0.3f;
@@ -293,6 +311,7 @@ namespace MMC
         {
             openWindow = true;
             swiping = false;
+            PlaySound("Ticking");
             shareToFeed.color = Color.green;
             stateTimer.fillAmount = 1;
             stateTimer.color = Color.white;
@@ -322,6 +341,7 @@ namespace MMC
 
         void Punish()
         {
+            ePunished.Raise();
             comboMultiplier = 1;
             int p;
             int m;
@@ -350,6 +370,7 @@ namespace MMC
         {
             SceneManager.LoadScene(scene);
         }
+
 
     }
 }

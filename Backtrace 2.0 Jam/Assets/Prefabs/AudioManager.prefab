@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &763652233029277003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763652233029277001}
+  - component: {fileID: 763652233029277000}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &763652233029277001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763652233029277003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763652233029277000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763652233029277003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b032ede6bbb99747a98a8beecef57c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ButtonClicked
+    clip: {fileID: 8300000, guid: 538c2f6110c23dd49a8dd71438623041, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: ComboLost
+    clip: {fileID: 8300000, guid: 1ac181b2fa9367847ad1013208313176, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: ComboUp
+    clip: {fileID: 8300000, guid: ef02f356e92216c4dac9bfdc411f0531, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: Fail
+    clip: {fileID: 8300000, guid: 6d00b3bbaea671a4ab7ffbd6ffe6f6ca, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: GameMusic
+    clip: {fileID: 8300000, guid: acddc7b7362239441a48e83aaa3732cc, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 7bc19ef64ff39304a9af5fd5fc068d06, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: Shared
+    clip: {fileID: 8300000, guid: c93863d185907d044b3170a79be96833, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: Ticking
+    clip: {fileID: 8300000, guid: f5564691667464244add010854c9f1e4, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: Selected
+    clip: {fileID: 8300000, guid: e7973df64994f2b42a6138817a145676, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    mixer: {fileID: 0}
+    source: {fileID: 0}
+  mixer: {fileID: 0}
