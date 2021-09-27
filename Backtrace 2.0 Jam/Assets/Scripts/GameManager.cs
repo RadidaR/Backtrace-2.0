@@ -23,7 +23,7 @@ namespace MMC
         public int baseScore;
         public int comboMultiplier;
 
-        public int moves;
+        public int swipes;
 
         public bool gameOver;
         public bool paused;
@@ -40,6 +40,17 @@ namespace MMC
 
         public float buildUp;
         public float inputWindow;
+
+        public float windowDecreasePercent;
+        public float buildUpDecreasePercent;
+
+        public float minWindow;
+        public float minBuildUp;
+
+        float startingWindow;
+        float startingBuildUp;
+
+
         public bool openWindow;
         public bool swiping;
 
@@ -55,7 +66,9 @@ namespace MMC
         public MPImage comboImage;
         public TextMeshProUGUI multiplierText;
         public GameObject newHighScore;
-        
+
+        public Color start;
+        public Color end;
 
 
         public void AddPhysical(int add) => physical += add;
@@ -64,6 +77,7 @@ namespace MMC
 
         public void UpdateStats(int addP, int addM, int addS)
         {
+            swipes++;
             physical += addP;
             mental += addM;
             spiritual += addS;
@@ -110,6 +124,8 @@ namespace MMC
 
             scoreText.text = $"Score: {score}";
             multiplierText.text = $"x{comboMultiplier}";
+            multiplierText.color = start.LerpToColor(end, comboMultiplier * 0.1f);
+            multiplierText.fontSize = Mathf.Lerp(24, 48, comboMultiplier * 0.1f);
 
             if (comboMultiplier > 1)
             {
@@ -124,6 +140,17 @@ namespace MMC
 
             if (physical <= 0 || physical >= statMax || mental <= 0 || mental >= statMax || spiritual <= 0 || spiritual >= statMax)
                 GameOver();
+
+            if (inputWindow <= minWindow)
+                inputWindow = minWindow;
+            else
+                inputWindow = startingWindow - (swipes * windowDecreasePercent);
+
+            if (buildUp <= minBuildUp)
+                buildUp = minBuildUp;
+            else
+                buildUp = startingBuildUp - (swipes * buildUpDecreasePercent);
+
 
         }
 
@@ -157,6 +184,10 @@ namespace MMC
             input = new Input();
             score = 0;
             comboMultiplier = 1;
+            swipes = 0;
+
+            startingWindow = inputWindow;
+            startingBuildUp = buildUp;
 
             physical = Mathf.RoundToInt(statMax / 2);
             mental = Mathf.RoundToInt(statMax / 2);
@@ -235,6 +266,7 @@ namespace MMC
                 eRightPressed.Raise();
                 openWindow = false;
             }
+
         }
 
         IEnumerator<float> _BuildUp()
@@ -308,7 +340,7 @@ namespace MMC
                 s = -1;
             else
                 s = 1;
-            shareToFeed.color = Color.red;
+
 
             eWindowMissed.Raise();
             UpdateStats(p, m, s);
