@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   negative: 0
-  title: Physical Positive 2
-  description: gtgtt  dsa
-  graphic: {fileID: 21300000, guid: 7905570fbf0c8e3428d7f508303b2b85, type: 3}
+  title: 5 TIPS FOR HEALTH
+  description: 1. Wake up early! You won't believe....
+  graphic: {fileID: 21300000, guid: ff7c652bf6c8a3944abd66e57ee5fc2b, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 0.69803923, g: 0.26666668, b: 0.23137257, a: 1}
   physical: 3

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   negative: 0
-  title: Junk8
-  description: bnjhdgf
-  graphic: {fileID: 21300000, guid: 6ba5f8842061a8b48ab6ee4f8519c32b, type: 3}
+  title: 18+ ONLY
+  description: Come and get naughty with some identity fraud
+  graphic: {fileID: 21300000, guid: 667db79ba403bea428bf4678bd779e71, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 1, g: 1, b: 1, a: 1}
   physical: 1

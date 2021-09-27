@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   negative: 0
-  title: Mental Positive 1
-  description: ad gfggga
-  graphic: {fileID: 21300000, guid: 6be588dc6dd060a42bae1bfba4da1692, type: 3}
+  title: Explore YOUR MIND
+  description: You won't believe this fact about your own mind...
+  graphic: {fileID: 21300000, guid: a1c9f426ea68aff4b973c2fdf54a8159, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 0.38823533, g: 0.8745099, b: 0.9960785, a: 1}
   physical: -1

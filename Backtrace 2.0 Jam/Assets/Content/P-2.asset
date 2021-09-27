@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   negative: 1
-  title: Physical Negative 2
-  description: gtgtt  dsa
-  graphic: {fileID: 21300000, guid: f9ca0507820219f4eba03706090611a4, type: 3}
+  title: THE LIE!!!
+  description: Fruit proven to be dangerous!!! BE CARUFUL!
+  graphic: {fileID: 21300000, guid: 8e06a4e1da4d06b49b442dc22c49c4b3, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 0.69803923, g: 0.26666668, b: 0.23137257, a: 1}
   physical: -3

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   negative: 1
-  title: Mental Negative 2
-  description: ad gfggga
+  title: WAR!
+  description: Join us on our quest to rid the world of...
   graphic: {fileID: 21300000, guid: 9d6abb929920b6a4f9bbf9070bf6c8c9, type: 3}
   background: {fileID: 21300000, guid: 49f3e9480e96a5e4cb04bfde9a12d850, type: 3}
   tint: {r: 0.38823533, g: 0.8745099, b: 0.9960785, a: 1}
