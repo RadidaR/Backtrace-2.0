@@ -106,6 +106,7 @@ namespace MMC
                 Despawn();
         }
 
+
         public void WindowMissed()
         {
             if (!activeContent())

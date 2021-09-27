@@ -27,6 +27,14 @@ namespace MMC
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""07f6352d-2491-4012-a1a7-bc681da6e4f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +103,17 @@ namespace MMC
                     ""action"": ""Choice"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75bcabd8-b30c-40ef-953b-5ca1a7cf2bbd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -104,6 +123,7 @@ namespace MMC
             // Play
             m_Play = asset.FindActionMap("Play", throwIfNotFound: true);
             m_Play_Choice = m_Play.FindAction("Choice", throwIfNotFound: true);
+            m_Play_Pause = m_Play.FindAction("Pause", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -154,11 +174,13 @@ namespace MMC
         private readonly InputActionMap m_Play;
         private IPlayActions m_PlayActionsCallbackInterface;
         private readonly InputAction m_Play_Choice;
+        private readonly InputAction m_Play_Pause;
         public struct PlayActions
         {
             private @Input m_Wrapper;
             public PlayActions(@Input wrapper) { m_Wrapper = wrapper; }
             public InputAction @Choice => m_Wrapper.m_Play_Choice;
+            public InputAction @Pause => m_Wrapper.m_Play_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Play; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -171,6 +193,9 @@ namespace MMC
                     @Choice.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
                     @Choice.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
                     @Choice.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnChoice;
+                    @Pause.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_PlayActionsCallbackInterface = instance;
                 if (instance != null)
@@ -178,6 +203,9 @@ namespace MMC
                     @Choice.started += instance.OnChoice;
                     @Choice.performed += instance.OnChoice;
                     @Choice.canceled += instance.OnChoice;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -185,6 +213,7 @@ namespace MMC
         public interface IPlayActions
         {
             void OnChoice(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }
